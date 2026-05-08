@@ -2,17 +2,23 @@
 
 ```mermaid
 sequenceDiagram
-    actor User
-    participant UI as ConsoleUI
-    participant App as TaskService (Application)
-    participant Domain as Task (Domain)
-    participant Repo as TaskRepository (Infrastructure)
+    actor User as Користувач
+    participant Console as UI (Program.cs)
+    participant Factory as TaskFactory
+    participant Project as Project
+    participant Repo as InMemoryTaskRepository
 
-    User->>UI: Вводить дані задачі (Title, DueDate)
-    UI->>App: CreateTask(title, dueDate)
-    App->>Domain: new Task(title, dueDate)
-    Domain-->>App: task Object
-    App->>Repo: Save(task)
-    Repo-->>App: Success/Confirmation
-    App-->>UI: Show success message
-    UI-->>User: "Задача успішно створена"
+    User->>Console: Вибирає "1" (Додати задачу)
+    Console->>User: Запитує дані (Назва, Дедлайн, Пріоритет)
+    User->>Console: Вводить валідні дані
+    
+    Note over Console, Factory: Використання патерну Factory
+    Console->>Factory: Create(title, days, priority)
+    Factory-->>Console: повертає UserTask
+    
+    Console->>Project: AddTask(UserTask)
+    
+    Console->>Repo: Add(UserTask)
+    Note over Repo: Підготовка до Observer
+    Repo-->>Console: Тригерить подію OnTaskAdded
+    Console-->>User: Виводить лог: "Задачу успішно збережено"

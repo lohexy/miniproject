@@ -2,22 +2,20 @@
 
 ```mermaid
 classDiagram
-    class Task {
+    class UserTask {
         +Guid Id
         +string Title
-        +string Description
         +DateTime DueDate
-        +Priority Priority
+        +TaskPriority Priority
         +TaskStatus Status
-        +ChangeStatus(TaskStatus newStatus)
     }
 
     class Project {
         +Guid Id
         +string Name
-        +List~Task~ Tasks
-        +AddTask(Task task)
-        +GetProgress() double
+        +List~UserTask~ Tasks
+        +AddTask(UserTask task)
+        +this[int index] UserTask
     }
 
     class User {
@@ -25,22 +23,26 @@ classDiagram
         +string Name
         +string Email
     }
-
-    class Priority {
-        <<enumeration>>
-        Low
-        Medium
-        High
+    
+    class Category {
+        +Guid Id
+        +string Name
     }
 
-    class TaskStatus {
-        <<enumeration>>
-        Todo
-        InProgress
-        Done
+    class TaskFactory {
+        <<static>>
+        +Create(string title, int days, TaskPriority priority) UserTask
     }
 
-    Project "1" *-- "many" Task : містить
-    Task "many" --> "1" User : призначена
-    Task --> Priority : має
-    Task --> TaskStatus : має
+    class InMemoryTaskRepository {
+        -List~UserTask~ _tasks
+        +event Action~UserTask~ OnTaskAdded
+        +Add(UserTask task)
+        +GetAll() List~UserTask~
+        +Dispose()
+    }
+
+    Project "1" *-- "many" UserTask : містить
+    UserTask "many" --> "1" User : призначена
+    TaskFactory ..> UserTask : створює
+    InMemoryTaskRepository o-- UserTask : зберігає
