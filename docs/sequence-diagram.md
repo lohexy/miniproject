@@ -2,23 +2,24 @@
 
 ```mermaid
 sequenceDiagram
-    actor User as Користувач
-    participant Console as UI (Program.cs)
-    participant Factory as TaskFactory
-    participant Project as Project
-    participant Repo as InMemoryTaskRepository
+    participant U as Користувач
+    participant M as ConsoleMenu
+    participant S as TaskService
+    participant F as TaskFactory
+    participant R as JsonTaskRepository
+    participant FS as File System
 
-    User->>Console: Вибирає "1" (Додати задачу)
-    Console->>User: Запитує дані (Назва, Дедлайн, Пріоритет)
-    User->>Console: Вводить валідні дані
+    U->>M: Вибір "Додати задачу"
+    M->>U: Запит даних (Назва, дні, пріоритет)
+    U->>M: Вводить дані
+    M->>S: TryAddTask(title, days, priority)
+    S->>F: Create(title, days, priority)
+    F-->>S: Об'єкт UserTask
+    S->>S: Валідація та додавання в Project
+    S-->>M: Результат (Success)
     
-    Note over Console, Factory: Використання патерну Factory
-    Console->>Factory: Create(title, days, priority)
-    Factory-->>Console: повертає UserTask
-    
-    Console->>Project: AddTask(UserTask)
-    
-    Console->>Repo: Add(UserTask)
-    Note over Repo: Підготовка до Observer
-    Repo-->>Console: Тригерить подію OnTaskAdded
-    Console-->>User: Виводить лог: "Задачу успішно збережено"
+    Note over M,FS: При виході з програми (пункт 5)
+    M->>R: SaveAsync(tasks)
+    R->>FS: Запис у tasks.json
+    FS-->>R: Підтвердження
+    R-->>M: Успішно збережено

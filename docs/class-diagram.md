@@ -2,47 +2,39 @@
 
 ```mermaid
 classDiagram
-    class UserTask {
-        +Guid Id
-        +string Title
-        +DateTime DueDate
-        +TaskPriority Priority
-        +TaskStatus Status
-    }
-
     class Project {
-        +Guid Id
-        +string Name
+        +String Name
         +List~UserTask~ Tasks
         +AddTask(UserTask task)
-        +this[int index] UserTask
     }
-
-    class User {
+    class UserTask {
         +Guid Id
-        +string Name
-        +string Email
+        +String Title
+        +TaskStatus Status
+        +TaskPriority Priority
+        +DateTime? DueDate
     }
-    
-    class Category {
-        +Guid Id
-        +string Name
-    }
-
     class TaskFactory {
-        <<static>>
-        +Create(string title, int days, TaskPriority priority) UserTask
+        +Create(String title, int days, TaskPriority p) UserTask
+    }
+    class TaskService {
+        -Project _project
+        +TryAddTask(String title, int days, TaskPriority p) bool
+        +GetAnalytics() Stats
+    }
+    class IDataStore {
+        <<interface>>
+        +LoadAsync()
+        +SaveAsync()
+    }
+    class JsonTaskRepository {
+        -String _filePath
+        +LoadAsync()
+        +SaveAsync()
     }
 
-    class InMemoryTaskRepository {
-        -List~UserTask~ _tasks
-        +event Action~UserTask~ OnTaskAdded
-        +Add(UserTask task)
-        +GetAll() List~UserTask~
-        +Dispose()
-    }
-
-    Project "1" *-- "many" UserTask : містить
-    UserTask "many" --> "1" User : призначена
-    TaskFactory ..> UserTask : створює
-    InMemoryTaskRepository o-- UserTask : зберігає
+    TaskService --> Project
+    Project "1" *-- "*" UserTask
+    TaskFactory ..> UserTask : creates
+    JsonTaskRepository ..|> IDataStore
+    TaskService ..> IDataStore : uses

@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using Domain;
 using TaskStatus = Domain.TaskStatus;
+using TaskFactory = Domain.TaskFactory;
 
 namespace tests;
 
@@ -51,5 +52,24 @@ public class DomainTests
 
         Assert.Equal("Іван", user.Name);
         Assert.Equal("ivan@test.com", user.Email);
+    }
+
+    [Fact]
+    public void TaskFactory_Should_CreateTaskWithCorrectData()
+    {
+        var task = TaskFactory.Create("Тест Фабрики", 5, TaskPriority.High);
+
+        Assert.Equal("Тест Фабрики", task.Title);
+        Assert.Equal(TaskPriority.High, task.Priority);
+        Assert.Equal(TaskStatus.Todo, task.Status);
+        Assert.True(task.DueDate.HasValue);
+    }
+
+    [Fact]
+    public void TaskFactory_Should_SetNullDueDate_WhenZeroDaysPassed()
+    {
+        var task = TaskFactory.Create("Без дедлайну", 0, TaskPriority.Low);
+
+        Assert.Null(task.DueDate);
     }
 }

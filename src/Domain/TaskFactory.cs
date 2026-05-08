@@ -7,7 +7,7 @@ public static class TaskFactory
         return new UserTask
         {
             Title = string.IsNullOrWhiteSpace(title) ? "Без назви" : title,
-            DueDate = DateTime.Now.AddDays(daysToDue),
+            DueDate = daysToDue == 0 ? null : DateTime.Now.AddDays(daysToDue),
             Priority = priority,
             Status = TaskStatus.Todo
         };

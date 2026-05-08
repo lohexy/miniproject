@@ -15,3 +15,10 @@
 2. Склонуйте репозиторій.
 3. У терміналі виконайте команду:
    dotnet run --project src/Console
+
+## Оновлення: Ітерація 2 (Lab 35)
+- Persistence: Додано збереження даних у форматі JSON.
+- Architecture: Впроваджено Clean Architecture (шари Domain, Application, Infrastructure).
+- Patterns: Використано Factory Method та Repository.
+- Analytics: Додано аналітичний модуль на базі LINQ.
+- Testing: Покриття unit-тестами основної логіки (17 тестів).
