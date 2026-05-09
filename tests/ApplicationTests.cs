@@ -8,32 +8,27 @@ namespace tests;
 public class ApplicationTests
 {
     [Fact]
-    public void TaskService_TryAddTask_UniqueTitle_ReturnsTrue()
+    public void TaskService_AddTask_UniqueTitle_AddsTask()
     {
         var project = new Project();
         var service = new TaskService(project);
 
-        bool result = service.TryAddTask("Нова задача", 3, TaskPriority.High, out string error, out var task);
+        service.AddTask("Нова задача", 3, TaskPriority.High);
 
-        Assert.True(result);
-        Assert.Empty(error);
-        Assert.NotNull(task);
         Assert.Single(project.Tasks);
+        Assert.Equal("Нова задача", project.Tasks[0].Title);
     }
 
     [Fact]
-    public void TaskService_TryAddTask_DuplicateTitle_ReturnsFalse()
+    public void TaskService_ValidateTitle_DuplicateTitle_ThrowsException()
     {
         var project = new Project();
         project.AddTask(new UserTask { Title = "Дублікат" });
         var service = new TaskService(project);
 
-        bool result = service.TryAddTask("Дублікат", 2, TaskPriority.Medium, out string error, out var task);
-
-        Assert.False(result);
-        Assert.Null(task);
-        Assert.Contains("вже існує", error);
+        Assert.Throws<DuplicateTaskTitleException>(() => service.ValidateTitle("Дублікат"));
     }
+
 
     [Fact]
     public void TaskService_TryChangeStatus_OverdueTaskToDone_ReturnsFalse()
