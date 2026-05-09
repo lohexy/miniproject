@@ -10,16 +10,21 @@ sequenceDiagram
     participant FS as File System
 
     U->>M: Вибір "Додати задачу"
-    M->>U: Запит даних (Назва, дні, пріоритет)
-    U->>M: Вводить дані
-    M->>S: TryAddTask(title, days, priority)
-    S->>F: Create(title, days, priority)
-    F-->>S: Об'єкт UserTask
-    S->>S: Валідація та додавання в Project
-    S-->>M: Результат (Success)
+    M->>U: Запит назви
+    U->>M: Вводить назву
+    M->>S: ValidateTitle(title)
     
-    Note over M,FS: При виході з програми (пункт 5)
+    alt Назва вже існує
+        S-->>M: throw DuplicateTaskTitleException
+        M->>U: Вивід помилки (спробуйте ще раз)
+    else Назва унікальна
+        M->>S: AddTask(title, days, priority)
+        S->>F: Create(title, days, priority)
+        F-->>S: Об'єкт UserTask
+        S->>S: Додавання в Project
+        S-->>M: Результат (Success)
+    end
+    
+    Note over M,FS: При виході з програми (пункт 0)
     M->>R: SaveAsync(tasks)
-    R->>FS: Запис у tasks.json
-    FS-->>R: Підтвердження
-    R-->>M: Успішно збережено
+    R->>FS: Запис у tasks.json (та бекап tasks.csv)

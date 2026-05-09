@@ -16,20 +16,25 @@ public class TaskService
         _project = project;
     }
 
-    public bool TryAddTask(string title, int daysToDue, TaskPriority priority, out string errorMessage, out UserTask? createdTask)
+    public UserTask AddTask(string title, int daysToDue, TaskPriority priority)
     {
-        errorMessage = string.Empty;
-        createdTask = null;
+    if (_project.Tasks.Any(t => t.Title.Equals(title, StringComparison.OrdinalIgnoreCase)))
+    {
+        throw new DuplicateTaskTitleException(title); 
+    }
 
-        if (_project.Tasks.Any(t => t.Title.Equals(title, StringComparison.OrdinalIgnoreCase)))
-        {
-            errorMessage = $"Задача з назвою '{title}' вже існує!";
-            return false;
-        }
+    var createdTask = Domain.TaskFactory.Create(title, daysToDue, priority);
+    _project.AddTask(createdTask);
+    
+    return createdTask;
+    }
 
-        createdTask = Domain.TaskFactory.Create(title, daysToDue, priority);
-        _project.AddTask(createdTask);
-        return true;
+    public void ValidateTitle(string title)
+    {
+    if (_project.Tasks.Any(t => t.Title.Equals(title, StringComparison.OrdinalIgnoreCase)))
+    {
+        throw new DuplicateTaskTitleException(title);
+    }
     }
 
     public bool TryChangeStatus(int taskIndex, TaskStatus newStatus, out string errorMessage)

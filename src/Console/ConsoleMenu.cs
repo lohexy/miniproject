@@ -64,14 +64,22 @@ public class ConsoleMenu
 
     private void AddNewTask()
     {
-        string title;
-        while (true)
-        {
-            Console.Write("\nВведіть назву: ");
-            title = Console.ReadLine() ?? "Без назви";
-            if (!string.IsNullOrWhiteSpace(title)) break;
-            Console.WriteLine("Помилка! Назва не може бути порожньою.");
-        }
+        string title = "";
+    while (true)
+    {
+    Console.Write("Введіть назву задачі: ");
+    title = Console.ReadLine() ?? "";
+    
+    try 
+    {
+        _taskService.ValidateTitle(title);
+        break;
+    }
+    catch (DuplicateTaskTitleException ex)
+    {
+        Console.WriteLine($"[Error] {ex.Message} Спробуйте ще раз.\n");
+    }
+    }
 
         int days;
         while (true)
@@ -89,14 +97,19 @@ public class ConsoleMenu
             Console.WriteLine("Помилка! Введіть тільки цифру 0, 1 або 2.");
         }
 
-        if (!_taskService.TryAddTask(title, days, priority, out string errorMessage, out UserTask? newTask))
-    {
-        Console.WriteLine($"\n[Помилка] {errorMessage}");
-    }
-    else
-    {
-        Console.WriteLine("\n[Успіх] Задачу додано в список. Вона буде збережена у файл при виході.");
-    }
+        try 
+        {
+        _taskService.AddTask(title, days, priority);
+        Console.WriteLine("\n[Success] Задачу додано в список. Вона буде збережена у файл при виході.");
+        }
+        catch (TaskDomainException ex)
+        {
+            Console.WriteLine($"\n[Помилка Бізнес-Логіки] {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\n[Критична Помилка] Щось пішло не так: {ex.Message}");
+        }
 
         WaitForKey();
     }
@@ -193,39 +206,78 @@ public class ConsoleMenu
             return;
         }
 
-        Console.WriteLine("\n Зміна статусу задачі ");
-        for (int i = 0; i < _currentProject.Tasks.Count; i++)
-        {
-            var t = _currentProject.Tasks[i];
-            Console.WriteLine($"[{i + 1}] {t.Title} (Поточний статус: {t.Status})");
-        }
+        int currentPage = 1;
+        int pageSize = 5;
 
-        Console.Write("\nВведіть номер задачі для зміни статусу: ");
-        if (int.TryParse(Console.ReadLine(), out int index))
+        while (true)
         {
-            Console.Write("Введіть новий статус (0-Todo, 1-InProgress, 2-Done): ");
-            if (Enum.TryParse(Console.ReadLine(), out TaskStatus newStatus) && Enum.IsDefined(typeof(TaskStatus), newStatus))
+            int totalTasks = _currentProject.Tasks.Count;
+            int totalPages = (int)Math.Ceiling(totalTasks / (double)pageSize);
+            
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            var pageTasks = _currentProject.Tasks
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            Console.WriteLine($"\n Зміна статусу задачі (Сторінка {currentPage} з {totalPages}) ");
+            for (int i = 0; i < pageTasks.Count; i++)
             {
-                if (_taskService.TryChangeStatus(index - 1, newStatus, out string error))
+                var t = pageTasks[i];
+                Console.WriteLine($"[{i + 1}] {t.Title} (Поточний статус: {t.Status})");
+            }
+
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("[6] Попередня сторінка");
+            Console.WriteLine("[7] Наступна сторінка");
+            Console.WriteLine("[0] Назад до головного меню");
+            Console.Write("\nВиберіть номер задачі (1-5) або команду: ");
+
+            string input = Console.ReadLine() ?? "";
+
+            if (input == "0") 
+            {
+                return;
+            }
+            else if (input == "6")
+            {
+                if (currentPage > 1) currentPage--;
+                else { Console.WriteLine("[!] Це вже перша сторінка."); WaitForKey(); }
+            }
+            else if (input == "7")
+            {
+                if (currentPage < totalPages) currentPage++;
+                else { Console.WriteLine("[!] Це остання сторінка."); WaitForKey(); }
+            }
+            else if (int.TryParse(input, out int localIndex) && localIndex >= 1 && localIndex <= pageTasks.Count)
+            {
+                int globalIndex = (currentPage - 1) * pageSize + (localIndex - 1);
+
+                Console.Write("Введіть новий статус (0-Todo, 1-InProgress, 2-Done): ");
+                if (Enum.TryParse(Console.ReadLine(), out TaskStatus newStatus) && Enum.IsDefined(typeof(TaskStatus), newStatus))
                 {
-                    Console.WriteLine($"\n[Успіх] Статус задачі змінено на {newStatus}.");
+                    if (_taskService.TryChangeStatus(globalIndex, newStatus, out string error))
+                    {
+                        Console.WriteLine($"\n[Успіх] Статус задачі змінено на {newStatus}.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\n[Помилка Бізнес-логіки] {error}");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine($"\n[Помилка Бізнес-логіки] {error}");
+                    Console.WriteLine("Помилка вводу статусу.");
                 }
+                WaitForKey();
             }
             else
             {
-                Console.WriteLine("Помилка вводу статусу.");
+                Console.WriteLine("Помилка вводу або невідома команда.");
+                WaitForKey();
             }
         }
-        else
-        {
-            Console.WriteLine("Помилка вводу номера.");
-        }
-
-        WaitForKey();
     }
 
     private void ShowAnalytics()

@@ -19,8 +19,9 @@ classDiagram
     }
     class TaskService {
         -Project _project
-        +TryAddTask(String title, int days, TaskPriority p) bool
-        +GetAnalytics() Stats
+        +AddTask(String title, int days, TaskPriority p) UserTask
+        +ValidateTitle(String title)
+        +TryChangeStatus(int index, TaskStatus status)
     }
     class IDataStore {
         <<interface>>
@@ -31,6 +32,13 @@ classDiagram
         -String _filePath
         +LoadAsync()
         +SaveAsync()
+        -ImportFromCsvAsync()
+    }
+    class TaskDomainException {
+        <<Exception>>
+    }
+    class DuplicateTaskTitleException {
+        <<Exception>>
     }
 
     TaskService --> Project
@@ -38,3 +46,5 @@ classDiagram
     TaskFactory ..> UserTask : creates
     JsonTaskRepository ..|> IDataStore
     TaskService ..> IDataStore : uses
+    TaskDomainException <|-- DuplicateTaskTitleException
+    TaskService ..> DuplicateTaskTitleException : throws
