@@ -1,0 +1,911 @@
+{
+  "Application.dll": {
+    "D:\\unity\\project\\miniproject\\src\\Application\\TaskService.cs": {
+      "Application.TaskService": {
+        "Domain.UserTask Application.TaskService::AddTask(System.String,System.Int32,Domain.TaskPriority)": {
+          "Lines": {
+            "20": 2,
+            "21": 2,
+            "22": 0,
+            "23": 0,
+            "26": 2,
+            "27": 2,
+            "29": 2,
+            "30": 2
+          },
+          "Branches": [
+            {
+              "Line": 21,
+              "Offset": 44,
+              "EndOffset": 46,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 21,
+              "Offset": 44,
+              "EndOffset": 59,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        },
+        "System.Void Application.TaskService::ValidateTitle(System.String)": {
+          "Lines": {
+            "33": 6,
+            "34": 12,
+            "35": 6,
+            "36": 6,
+            "38": 0
+          },
+          "Branches": [
+            {
+              "Line": 34,
+              "Offset": 44,
+              "EndOffset": 46,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 6
+            },
+            {
+              "Line": 34,
+              "Offset": 44,
+              "EndOffset": 59,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Application.TaskService::TryChangeStatus(System.Int32,Domain.TaskStatus,System.String&)": {
+          "Lines": {
+            "41": 4,
+            "42": 4,
+            "43": 4,
+            "44": 2,
+            "45": 2,
+            "46": 2,
+            "49": 2,
+            "51": 2,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "57": 1,
+            "58": 1,
+            "59": 4
+          },
+          "Branches": [
+            {
+              "Line": 43,
+              "Offset": 10,
+              "EndOffset": 12,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 3
+            },
+            {
+              "Line": 43,
+              "Offset": 10,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 43,
+              "Offset": 39,
+              "EndOffset": 41,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 43,
+              "Offset": 39,
+              "EndOffset": 53,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 2
+            },
+            {
+              "Line": 51,
+              "Offset": 86,
+              "EndOffset": 88,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 113,
+              "EndOffset": 115,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 122,
+              "EndOffset": 124,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 86,
+              "EndOffset": 130,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 113,
+              "EndOffset": 130,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 122,
+              "EndOffset": 130,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 133,
+              "EndOffset": 135,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 133,
+              "EndOffset": 147,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 1
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<Domain.UserTask> Application.TaskService::GetFilteredTasks(System.String,System.Collections.Generic.List`1<Domain.TaskStatus>,System.Boolean,System.String,System.Boolean)": {
+          "Lines": {
+            "62": 4,
+            "63": 4,
+            "64": 8,
+            "65": 7,
+            "66": 8,
+            "68": 4,
+            "69": 4,
+            "70": 6,
+            "72": 0,
+            "73": 0,
+            "74": 4
+          },
+          "Branches": [
+            {
+              "Line": 68,
+              "Offset": 105,
+              "EndOffset": 107,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 69,
+              "Offset": 109,
+              "EndOffset": 111,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 4
+            },
+            {
+              "Line": 69,
+              "Offset": 109,
+              "EndOffset": 155,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 68,
+              "Offset": 105,
+              "EndOffset": 200,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 202,
+              "EndOffset": 204,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 202,
+              "EndOffset": 248,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 14,
+              "EndOffset": 23,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 70,
+              "Offset": 14,
+              "EndOffset": 23,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 66,
+              "Offset": 6,
+              "EndOffset": 8,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 66,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 66,
+              "Offset": 48,
+              "EndOffset": 50,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 66,
+              "Offset": 22,
+              "EndOffset": 64,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 66,
+              "Offset": 48,
+              "EndOffset": 64,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 66,
+              "Offset": 6,
+              "EndOffset": 67,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.ValueTuple`7<System.Int32,System.Int32,System.Double,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<Domain.TaskPriority,Domain.UserTask>>,System.Collections.Generic.IEnumerable`1<System.Linq.IGrouping`2<Domain.TaskStatus,Domain.UserTask>>,System.Collections.Generic.List`1<Domain.UserTask>,System.Collections.Generic.List`1<Domain.UserTask>> Application.TaskService::GetAnalytics()": {
+          "Lines": {
+            "85": 3,
+            "86": 3,
+            "87": 7,
+            "88": 3,
+            "90": 3,
+            "91": 3,
+            "93": 3,
+            "94": 4,
+            "95": 3,
+            "97": 3,
+            "98": 4,
+            "99": 0,
+            "100": 3,
+            "101": 3,
+            "103": 3,
+            "104": 3
+          },
+          "Branches": [
+            {
+              "Line": 88,
+              "Offset": 68,
+              "EndOffset": 70,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 88,
+              "Offset": 68,
+              "EndOffset": 81,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 94,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 94,
+              "Offset": 40,
+              "EndOffset": 42,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 94,
+              "Offset": 14,
+              "EndOffset": 56,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 94,
+              "Offset": 40,
+              "EndOffset": 56,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 98,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 98,
+              "Offset": 40,
+              "EndOffset": 42,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 98,
+              "Offset": 14,
+              "EndOffset": 56,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 98,
+              "Offset": 40,
+              "EndOffset": 56,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Void Application.TaskService::.ctor(Domain.Project)": {
+          "Lines": {
+            "14": 19,
+            "15": 19,
+            "16": 19,
+            "17": 19
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "Domain.dll": {
+    "D:\\unity\\project\\miniproject\\src\\Domain\\Category.cs": {
+      "Domain.Category": {
+        "System.Guid Domain.Category::get_Id()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String Domain.Category::get_Name()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\unity\\project\\miniproject\\src\\Domain\\Exceptions\\TaskDomainException.cs": {
+      "Domain.TaskDomainException": {
+        "System.Void Domain.TaskDomainException::.ctor(System.String)": {
+          "Lines": {
+            "7": 18
+          },
+          "Branches": []
+        }
+      },
+      "Domain.DuplicateTaskTitleException": {
+        "System.Void Domain.DuplicateTaskTitleException::.ctor(System.String)": {
+          "Lines": {
+            "13": 18
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\unity\\project\\miniproject\\src\\Domain\\Project.cs": {
+      "Domain.Project": {
+        "System.Guid Domain.Project::get_Id()": {
+          "Lines": {
+            "5": 24
+          },
+          "Branches": []
+        },
+        "System.String Domain.Project::get_Name()": {
+          "Lines": {
+            "6": 25
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Domain.UserTask> Domain.Project::get_Tasks()": {
+          "Lines": {
+            "7": 1099
+          },
+          "Branches": []
+        },
+        "System.Void Domain.Project::AddTask(Domain.UserTask)": {
+          "Lines": {
+            "9": 1025
+          },
+          "Branches": []
+        },
+        "Domain.UserTask Domain.Project::get_Item(System.Int32)": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void Domain.Project::set_Item(System.Int32,Domain.UserTask)": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\unity\\project\\miniproject\\src\\Domain\\TaskFactory.cs": {
+      "Domain.TaskFactory": {
+        "Domain.UserTask Domain.TaskFactory::Create(System.String,System.Int32,Domain.TaskPriority)": {
+          "Lines": {
+            "6": 9,
+            "7": 9,
+            "8": 9,
+            "9": 9,
+            "10": 9,
+            "11": 9,
+            "12": 9,
+            "13": 9,
+            "14": 9
+          },
+          "Branches": [
+            {
+              "Line": 7,
+              "Offset": 13,
+              "EndOffset": 15,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 8
+            },
+            {
+              "Line": 7,
+              "Offset": 13,
+              "EndOffset": 18,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 7,
+              "Offset": 31,
+              "EndOffset": 33,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 7
+            },
+            {
+              "Line": 7,
+              "Offset": 31,
+              "EndOffset": 55,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 2
+            }
+          ]
+        }
+      }
+    },
+    "D:\\unity\\project\\miniproject\\src\\Domain\\User.cs": {
+      "Domain.User": {
+        "System.Guid Domain.User::get_Id()": {
+          "Lines": {
+            "5": 1
+          },
+          "Branches": []
+        },
+        "System.String Domain.User::get_Name()": {
+          "Lines": {
+            "6": 3
+          },
+          "Branches": []
+        },
+        "System.String Domain.User::get_Email()": {
+          "Lines": {
+            "7": 3
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\unity\\project\\miniproject\\src\\Domain\\UserTask.cs": {
+      "Domain.UserTask": {
+        "System.Guid Domain.UserTask::get_Id()": {
+          "Lines": {
+            "8": 1086
+          },
+          "Branches": []
+        },
+        "System.String Domain.UserTask::get_Title()": {
+          "Lines": {
+            "9": 2170
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.DateTime> Domain.UserTask::get_DueDate()": {
+          "Lines": {
+            "10": 57
+          },
+          "Branches": []
+        },
+        "Domain.TaskPriority Domain.UserTask::get_Priority()": {
+          "Lines": {
+            "11": 1107
+          },
+          "Branches": []
+        },
+        "Domain.TaskStatus Domain.UserTask::get_Status()": {
+          "Lines": {
+            "12": 1147
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "Infrastructure.dll": {
+    "D:\\unity\\project\\miniproject\\src\\Infrastructure\\InMemoryTaskRepository.cs": {
+      "Infrastructure.InMemoryTaskRepository": {
+        "System.Void Infrastructure.InMemoryTaskRepository::Add(Domain.UserTask)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0
+          },
+          "Branches": [
+            {
+              "Line": 14,
+              "Offset": 21,
+              "EndOffset": 23,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 14,
+              "Offset": 21,
+              "EndOffset": 26,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<Domain.UserTask> Infrastructure.InMemoryTaskRepository::GetAll()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Void Infrastructure.InMemoryTaskRepository::Dispose()": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.Void Infrastructure.InMemoryTaskRepository::.ctor()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\unity\\project\\miniproject\\src\\Infrastructure\\JsonTaskRepository.cs": {
+      "Infrastructure.JsonTaskRepository": {
+        "System.Void Infrastructure.JsonTaskRepository::Add(Domain.UserTask)": {
+          "Lines": {
+            "79": 5,
+            "80": 5,
+            "81": 5,
+            "82": 5
+          },
+          "Branches": [
+            {
+              "Line": 81,
+              "Offset": 21,
+              "EndOffset": 23,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 5
+            },
+            {
+              "Line": 81,
+              "Offset": 21,
+              "EndOffset": 26,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<Domain.UserTask> Infrastructure.JsonTaskRepository::GetAll()": {
+          "Lines": {
+            "84": 4
+          },
+          "Branches": []
+        },
+        "System.Void Infrastructure.JsonTaskRepository::Dispose()": {
+          "Lines": {
+            "87": 16,
+            "88": 16,
+            "89": 16
+          },
+          "Branches": []
+        },
+        "System.Void Infrastructure.JsonTaskRepository::.ctor(System.String)": {
+          "Lines": {
+            "10": 16,
+            "14": 16,
+            "15": 16,
+            "16": 16,
+            "17": 16
+          },
+          "Branches": []
+        }
+      },
+      "Infrastructure.JsonTaskRepository/<ImportFromCsvAsync>d__8": {
+        "System.Void Infrastructure.JsonTaskRepository/<ImportFromCsvAsync>d__8::MoveNext()": {
+          "Lines": {
+            "54": 3,
+            "55": 3,
+            "56": 4,
+            "58": 2,
+            "59": 6,
+            "60": 2,
+            "61": 2,
+            "62": 2,
+            "63": 2,
+            "64": 2,
+            "65": 2,
+            "66": 2,
+            "67": 2,
+            "68": 2,
+            "69": 2,
+            "70": 2,
+            "71": 1,
+            "72": 1,
+            "73": 1,
+            "74": 1,
+            "75": 1,
+            "76": 2
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 41,
+              "EndOffset": 43,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 56,
+              "Offset": 41,
+              "EndOffset": 55,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 59,
+              "Offset": 444,
+              "EndOffset": 202,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 2
+            },
+            {
+              "Line": 62,
+              "Offset": 248,
+              "EndOffset": 253,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 64,
+              "Offset": 329,
+              "EndOffset": 331,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 64,
+              "Offset": 329,
+              "EndOffset": 351,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 62,
+              "Offset": 248,
+              "EndOffset": 398,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 59,
+              "Offset": 444,
+              "EndOffset": 449,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.JsonTaskRepository/<LoadAsync>d__6": {
+        "System.Void Infrastructure.JsonTaskRepository/<LoadAsync>d__6::MoveNext()": {
+          "Lines": {
+            "20": 10,
+            "22": 10,
+            "23": 10,
+            "24": 9,
+            "25": 9,
+            "26": 9,
+            "27": 12,
+            "28": 0,
+            "29": 1,
+            "30": 3,
+            "31": 3,
+            "32": 3,
+            "33": 3,
+            "36": 1,
+            "37": 9
+          },
+          "Branches": [
+            {
+              "Line": 23,
+              "Offset": 54,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 9
+            },
+            {
+              "Line": 27,
+              "Offset": 226,
+              "EndOffset": 228,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 6
+            },
+            {
+              "Line": 27,
+              "Offset": 226,
+              "EndOffset": 240,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 54,
+              "EndOffset": 255,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "Infrastructure.JsonTaskRepository/<SaveAsync>d__7": {
+        "System.Void Infrastructure.JsonTaskRepository/<SaveAsync>d__7::MoveNext()": {
+          "Lines": {
+            "40": 8,
+            "41": 8,
+            "42": 8,
+            "44": 8,
+            "45": 8,
+            "46": 44,
+            "47": 10,
+            "48": 10,
+            "49": 10,
+            "50": 8,
+            "51": 8
+          },
+          "Branches": [
+            {
+              "Line": 46,
+              "Offset": 403,
+              "EndOffset": 222,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 10
+            },
+            {
+              "Line": 46,
+              "Offset": 403,
+              "EndOffset": 408,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 8
+            }
+          ]
+        }
+      }
+    }
+  }
+}
