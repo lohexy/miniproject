@@ -29,7 +29,6 @@ public class ApplicationTests
         Assert.Throws<DuplicateTaskTitleException>(() => service.ValidateTitle("Дублікат"));
     }
 
-
     [Fact]
     public void TaskService_TryChangeStatus_OverdueTaskToDone_ReturnsFalse()
     {
@@ -89,5 +88,136 @@ public class ApplicationTests
 
         Assert.Single(result);
         Assert.Equal("Купити молоко", result[0].Title);
+    }
+
+    [Theory]
+    [InlineData("Тест", "тест")]
+    [InlineData("ТЕКСТ", "текст")]
+    [InlineData("Task1", "tAsK1")]
+    public void TaskService_ValidateTitle_CaseInsensitive_ThrowsException(string firstTitle, string duplicateTitle)
+    {
+        var project = new Project();
+        project.AddTask(new UserTask { Title = firstTitle });
+        var service = new TaskService(project);
+
+        Assert.Throws<DuplicateTaskTitleException>(() => service.ValidateTitle(duplicateTitle));
+    }
+
+    [Fact]
+    public void TaskService_GetAnalytics_EmptyProject_ReturnsZeros()
+    {
+        var project = new Project();
+        var service = new TaskService(project);
+
+        var stats = service.GetAnalytics();
+
+        Assert.Equal(0, stats.Total);
+        Assert.Equal(0, stats.Done);
+        Assert.Equal(0.0, stats.Progress);
+    }
+
+    [Fact]
+    public void TaskService_TryChangeStatus_IndexOutOfBounds_ReturnsFalse()
+    {
+        var project = new Project();
+        var service = new TaskService(project);
+
+        bool result = service.TryChangeStatus(99, TaskStatus.Done, out string error);
+
+        Assert.False(result);
+        Assert.NotEmpty(error);
+    }
+
+    [Fact]
+    public void TaskService_GetFilteredTasks_EmptyStatusesList_ReturnsEmpty()
+    {
+        var project = new Project();
+        project.AddTask(new UserTask { Title = "Молоко", Status = TaskStatus.Todo });
+        project.AddTask(new UserTask { Title = "Хліб", Status = TaskStatus.Done });
+        var service = new TaskService(project);
+
+        var emptyStatuses = new System.Collections.Generic.List<TaskStatus>();
+        var result = service.GetFilteredTasks("", emptyStatuses, false, "Date", false);
+
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void TaskService_GetAnalytics_AllDone_Returns100Progress()
+    {
+        var project = new Project();
+        project.AddTask(new UserTask { Status = TaskStatus.Done });
+        project.AddTask(new UserTask { Status = TaskStatus.Done });
+        var service = new TaskService(project);
+
+        var stats = service.GetAnalytics();
+
+        Assert.Equal(100.0, stats.Progress);
+        Assert.Equal(2, stats.Done);
+    }
+
+    [Theory]
+    [InlineData("   Молоко   ", "Молоко")]
+    [InlineData("молоко", "Молоко")]
+    public void TaskService_ValidateTitle_IgnoresWhitespacesAndCase(string inputTitle, string existingTitle)
+    {
+        var project = new Project();
+        project.AddTask(new UserTask { Title = existingTitle });
+        var service = new TaskService(project);
+
+        Assert.Throws<DuplicateTaskTitleException>(() => service.ValidateTitle(inputTitle.Trim()));
+    }
+
+    [Fact]
+    public void TaskService_GetFilteredTasks_MultipleStatuses_ReturnsMatches()
+    {
+        var project = new Project();
+        project.AddTask(new UserTask { Title = "1", Status = TaskStatus.Todo });
+        project.AddTask(new UserTask { Title = "2", Status = TaskStatus.InProgress });
+        project.AddTask(new UserTask { Title = "3", Status = TaskStatus.Done });
+        var service = new TaskService(project);
+
+        var statuses = new System.Collections.Generic.List<TaskStatus> { TaskStatus.Todo, TaskStatus.Done };
+        var result = service.GetFilteredTasks("", statuses, false, "Date", false);
+
+        Assert.Equal(2, result.Count);
+        Assert.DoesNotContain(result, t => t.Status == TaskStatus.InProgress);
+    }
+
+    [Fact]
+    public void TaskService_TryChangeStatus_TaskNotFound_ReturnsFalse()
+    {
+        var project = new Project();
+        var service = new TaskService(project);
+        
+        bool result = service.TryChangeStatus(-1, TaskStatus.InProgress, out string error);
+
+        Assert.False(result);
+        Assert.NotEmpty(error);
+    }
+
+    [Fact]
+    public void TaskService_GetFilteredTasks_CaseSensitiveSearch_ReturnsMatches()
+    {
+        var project = new Project();
+        project.AddTask(new UserTask { Title = "Велике ЗАВДАННЯ", Status = TaskStatus.Todo });
+        var service = new TaskService(project);
+        var statuses = new System.Collections.Generic.List<TaskStatus> { TaskStatus.Todo };
+        var result = service.GetFilteredTasks("ЗАВДАННЯ", statuses, false, "Date", false);
+
+        Assert.Single(result);
+        Assert.Equal("Велике ЗАВДАННЯ", result[0].Title);
+    }
+
+    [Fact]
+    public void TaskService_AddTask_LargeDaysAmount_HandlesCorrectly()
+    {
+        var project = new Project();
+        var service = new TaskService(project);
+
+        service.AddTask("Далеке майбутнє", 10000, TaskPriority.Low);
+
+        Assert.Single(project.Tasks);
+        Assert.True(project.Tasks[0].DueDate > DateTime.Now.AddYears(20));
     }
 }
