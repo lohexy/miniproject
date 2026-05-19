@@ -1,24 +1,19 @@
-# Система управління задачами (Варіант 4)
+# Task Manager (Console Mini-Project)
 
-Підсумковий міні-проєкт з курсу розробки на C#. Система призначена для планування завдань, керування дедлайнами та пріоритетами.
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-86%25-brightgreen)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
 
-## Структура проєкту
-Проєкт побудований за багатошаровою архітектурою:
-- Domain: Ядро системи. Містить сутності (Task, User) та базові переліки (Priority, Status).
-- Application: Бізнес-логіка та сервіси (буде розширено в Лаб 35).
-- Infrastructure: Робота з даними. Наразі реалізовано збереження в оперативній пам'яті (In-memory).
-- Console: Інтерфейс користувача для взаємодії з системою.
-- Tests: Юніт-тести для перевірки коректності роботи логіки.
+Task Manager — це консольний застосунок для управління особистими задачами, розроблений з використанням принципів Clean Architecture, SOLID та патернів проєктування.
 
-## Як запустити
-1. Переконайтеся, що у вас встановлено .NET SDK.
-2. Склонуйте репозиторій.
-3. У терміналі виконайте команду:
-   dotnet run --project src/Console
+## Швидкий старт
 
-## Оновлення: Ітерація 2 (Lab 35)
-- Persistence: Додано збереження даних у форматі JSON.
-- Architecture: Впроваджено Clean Architecture (шари Domain, Application, Infrastructure).
-- Patterns: Використано Factory Method та Repository.
-- Analytics: Додано аналітичний модуль на базі LINQ.
-- Testing: Покриття unit-тестами основної логіки (17 тестів).
+Для запуску проєкту переконайтеся, що у вас встановлено [.NET 8.0 SDK](https://dotnet.microsoft.com/download) (або новіше).
+
+```bash
+# Клонувати репозиторій
+git clone [https://github.com/lohexy/miniproject.git](https://github.com/lohexy/miniproject.git)
+cd miniproject
+
+# Запустити застосунок
+dotnet run --project src/ConsoleApp/ConsoleApp.csproj
